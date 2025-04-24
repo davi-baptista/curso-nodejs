@@ -1,6 +1,8 @@
 import { randomUUID } from "node:crypto"
 import { Database } from "./database.js"
 import { buildRoutePath } from "./utils/build-route-path.js"
+import { parse } from "csv-parse"
+import fs from 'node:fs'
 
 const database = new Database
 
@@ -9,8 +11,57 @@ export const routes = [
         method: 'GET',
         path: buildRoutePath('/tasks'),
         handler: (req, res) => {
-            const tasks =database.select('tasks')
+            const { search } = req.query
+
+            const tasks = database.select('tasks', search ? {
+                title: search,
+                description: search
+            } : null)
+            
             return res.end(JSON.stringify(tasks))
+        }
+    },
+    {
+        method: 'POST',
+        path: buildRoutePath('/tasks/upload_csv'),
+        handler: async(req, res) => {
+            const raw = req.body.toString()
+
+            // Extrai a parte que vem depois dos cabeçalhos do multipart
+            const match = raw.match(/\r\n\r\n([\s\S]*?)\r\n--/)
+            const content = match[1]
+            
+            const parser = parse(content, {
+                    delimiter: ',',
+                    columns: true,
+                    skip_empty_lines: true,
+                    trim: true,
+            })
+            
+            for await(const row of parser) {
+                const allKeys = Object.keys(row)
+
+                const titleKey = allKeys.find(key => key.trim().toLowerCase() === 'title')
+                const title = row[titleKey]
+                
+                const descriptionKey = allKeys.find(key => key.trim().toLowerCase() === 'description')
+                const description = row[descriptionKey]
+
+                const task = {
+                    title,
+                    description
+                }
+
+                await fetch('http://localhost:5555/tasks', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(task)
+                })
+            }
+
+            return res.writeHead(204).end()
         }
     },
     {
@@ -27,7 +78,7 @@ export const routes = [
                 created_at: new Date().toISOString(),
                 updated_at: new Date().toISOString()
             }
-
+            console.log(task)
             database.insert('tasks', task)
             
             return res.writeHead(201).end()
