@@ -10,6 +10,7 @@ export async function userRoutes(app: FastifyInstance) {
     '/',
     { preHandler: [checkUserAlreadyLogged] },
     async (request, reply) => {
+      console.log('teste')
       const userSchema = z.object({
         name: z.string(),
         email: z.string(),
