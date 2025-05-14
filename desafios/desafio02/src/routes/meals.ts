@@ -4,6 +4,7 @@ import { z } from 'zod'
 
 import { randomUUID } from 'node:crypto'
 import { checkSessionIdExists } from '../middlewares/check_session_id_exists'
+import { maxHeaderSize } from 'node:http'
 
 export async function mealsRoutes(app: FastifyInstance) {
   app.get('/', { preHandler: [checkSessionIdExists] }, async (request) => {
@@ -13,6 +14,60 @@ export async function mealsRoutes(app: FastifyInstance) {
 
     return { meals }
   })
+
+  app.get('/:id', { preHandler: [checkSessionIdExists] }, async (request) => {
+    const paramsSchema = z.object({
+      id: z.string().uuid(),
+    })
+
+    const { id } = paramsSchema.parse(request.params)
+
+    const { sessionId } = request.cookies
+
+    const meal = await knex('meals')
+      .select()
+      .where({
+        id,
+        session_id: sessionId,
+      })
+      .first()
+
+    return { meal }
+  })
+
+  app.get(
+    '/metrics',
+    { preHandler: [checkSessionIdExists] },
+    async (request) => {
+      const { sessionId } = request.cookies
+
+      const meals = await knex('meals')
+        .where({ session_id: sessionId })
+        .orderBy('created_at', 'asc')
+
+      let currStreak = 0
+      let bestStreak = 0
+
+      let inDietCount = 0
+      let outDietCount = 0
+
+      for (const meal of meals) {
+        if (meal.in_or_out_diet === 'in_diet') {
+          currStreak += 1
+          inDietCount += 1
+        } else {
+          bestStreak = Math.max(currStreak, bestStreak)
+          outDietCount += 1
+        }
+      }
+      return {
+        total_meals: inDietCount + outDietCount,
+        in_diet: inDietCount,
+        out_diet: outDietCount,
+        best_streak: bestStreak,
+      }
+    },
+  )
 
   app.post(
     '/',
@@ -90,7 +145,6 @@ export async function mealsRoutes(app: FastifyInstance) {
     },
   )
 
-  // -CONFERIR
   app.delete(
     '/:id',
     {
@@ -101,7 +155,7 @@ export async function mealsRoutes(app: FastifyInstance) {
         id: z.string().uuid(),
       })
 
-      const id = paramsSchema.parse(request.params)
+      const { id } = paramsSchema.parse(request.params)
 
       const { sessionId } = request.cookies
 
@@ -113,30 +167,6 @@ export async function mealsRoutes(app: FastifyInstance) {
         .delete()
 
       return reply.status(204).send()
-    },
-  )
-
-  app.get(
-    '/:id',
-    { preHandler: [checkSessionIdExists] },
-    async (request, reply) => {
-      const paramsSchema = z.object({
-        id: z.string().uuid(),
-      })
-
-      const id = paramsSchema.parse(request.params)
-
-      const { sessionId } = request.cookies
-
-      const meal = await knex('meals')
-        .select()
-        .where({
-          id,
-          session_id: sessionId,
-        })
-        .first()
-
-      return { meal }
     },
   )
 }
