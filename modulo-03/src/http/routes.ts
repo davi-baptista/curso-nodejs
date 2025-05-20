@@ -1,8 +1,6 @@
-import { prisma } from '../lib/prisma'
-import { hash } from 'bcryptjs'
 import { FastifyInstance } from 'fastify'
-import { z } from 'zod'
+import { register } from './controllers/register'
 
 export function appRoutes(app: FastifyInstance) {
-  app.post('users', )
+  app.post('users', register)
 }

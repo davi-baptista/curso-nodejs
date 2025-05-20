@@ -149,7 +149,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\davi.inov\\Documents\\rocketseat\\curso-nodejs\\modulo-03\\generated\\prisma",
+      "value": "C:\\Users\\davim\\OneDrive\\Documentos\\curso-nodejs\\modulo-03\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -163,7 +163,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\davi.inov\\Documents\\rocketseat\\curso-nodejs\\modulo-03\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Users\\davim\\OneDrive\\Documentos\\curso-nodejs\\modulo-03\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -177,7 +177,6 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
