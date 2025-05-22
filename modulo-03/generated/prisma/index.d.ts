@@ -2194,7 +2194,7 @@ export namespace Prisma {
 
   export type CheckInMinAggregateOutputType = {
     id: string | null
-    create_at: Date | null
+    created_at: Date | null
     validated_at: Date | null
     user_id: string | null
     gym_id: string | null
@@ -2202,7 +2202,7 @@ export namespace Prisma {
 
   export type CheckInMaxAggregateOutputType = {
     id: string | null
-    create_at: Date | null
+    created_at: Date | null
     validated_at: Date | null
     user_id: string | null
     gym_id: string | null
@@ -2210,7 +2210,7 @@ export namespace Prisma {
 
   export type CheckInCountAggregateOutputType = {
     id: number
-    create_at: number
+    created_at: number
     validated_at: number
     user_id: number
     gym_id: number
@@ -2220,7 +2220,7 @@ export namespace Prisma {
 
   export type CheckInMinAggregateInputType = {
     id?: true
-    create_at?: true
+    created_at?: true
     validated_at?: true
     user_id?: true
     gym_id?: true
@@ -2228,7 +2228,7 @@ export namespace Prisma {
 
   export type CheckInMaxAggregateInputType = {
     id?: true
-    create_at?: true
+    created_at?: true
     validated_at?: true
     user_id?: true
     gym_id?: true
@@ -2236,7 +2236,7 @@ export namespace Prisma {
 
   export type CheckInCountAggregateInputType = {
     id?: true
-    create_at?: true
+    created_at?: true
     validated_at?: true
     user_id?: true
     gym_id?: true
@@ -2317,7 +2317,7 @@ export namespace Prisma {
 
   export type CheckInGroupByOutputType = {
     id: string
-    create_at: Date
+    created_at: Date
     validated_at: Date | null
     user_id: string
     gym_id: string
@@ -2342,7 +2342,7 @@ export namespace Prisma {
 
   export type CheckInSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    create_at?: boolean
+    created_at?: boolean
     validated_at?: boolean
     user_id?: boolean
     gym_id?: boolean
@@ -2352,7 +2352,7 @@ export namespace Prisma {
 
   export type CheckInSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    create_at?: boolean
+    created_at?: boolean
     validated_at?: boolean
     user_id?: boolean
     gym_id?: boolean
@@ -2362,7 +2362,7 @@ export namespace Prisma {
 
   export type CheckInSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    create_at?: boolean
+    created_at?: boolean
     validated_at?: boolean
     user_id?: boolean
     gym_id?: boolean
@@ -2372,13 +2372,13 @@ export namespace Prisma {
 
   export type CheckInSelectScalar = {
     id?: boolean
-    create_at?: boolean
+    created_at?: boolean
     validated_at?: boolean
     user_id?: boolean
     gym_id?: boolean
   }
 
-  export type CheckInOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "create_at" | "validated_at" | "user_id" | "gym_id", ExtArgs["result"]["checkIn"]>
+  export type CheckInOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "created_at" | "validated_at" | "user_id" | "gym_id", ExtArgs["result"]["checkIn"]>
   export type CheckInInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     gym?: boolean | GymDefaultArgs<ExtArgs>
@@ -2400,7 +2400,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      create_at: Date
+      created_at: Date
       validated_at: Date | null
       user_id: string
       gym_id: string
@@ -2830,7 +2830,7 @@ export namespace Prisma {
    */
   interface CheckInFieldRefs {
     readonly id: FieldRef<"CheckIn", 'String'>
-    readonly create_at: FieldRef<"CheckIn", 'DateTime'>
+    readonly created_at: FieldRef<"CheckIn", 'DateTime'>
     readonly validated_at: FieldRef<"CheckIn", 'DateTime'>
     readonly user_id: FieldRef<"CheckIn", 'String'>
     readonly gym_id: FieldRef<"CheckIn", 'String'>
@@ -4396,7 +4396,7 @@ export namespace Prisma {
 
   export const CheckInScalarFieldEnum: {
     id: 'id',
-    create_at: 'create_at',
+    created_at: 'created_at',
     validated_at: 'validated_at',
     user_id: 'user_id',
     gym_id: 'gym_id'
@@ -4565,7 +4565,7 @@ export namespace Prisma {
     OR?: CheckInWhereInput[]
     NOT?: CheckInWhereInput | CheckInWhereInput[]
     id?: StringFilter<"CheckIn"> | string
-    create_at?: DateTimeFilter<"CheckIn"> | Date | string
+    created_at?: DateTimeFilter<"CheckIn"> | Date | string
     validated_at?: DateTimeNullableFilter<"CheckIn"> | Date | string | null
     user_id?: StringFilter<"CheckIn"> | string
     gym_id?: StringFilter<"CheckIn"> | string
@@ -4575,7 +4575,7 @@ export namespace Prisma {
 
   export type CheckInOrderByWithRelationInput = {
     id?: SortOrder
-    create_at?: SortOrder
+    created_at?: SortOrder
     validated_at?: SortOrderInput | SortOrder
     user_id?: SortOrder
     gym_id?: SortOrder
@@ -4588,7 +4588,7 @@ export namespace Prisma {
     AND?: CheckInWhereInput | CheckInWhereInput[]
     OR?: CheckInWhereInput[]
     NOT?: CheckInWhereInput | CheckInWhereInput[]
-    create_at?: DateTimeFilter<"CheckIn"> | Date | string
+    created_at?: DateTimeFilter<"CheckIn"> | Date | string
     validated_at?: DateTimeNullableFilter<"CheckIn"> | Date | string | null
     user_id?: StringFilter<"CheckIn"> | string
     gym_id?: StringFilter<"CheckIn"> | string
@@ -4598,7 +4598,7 @@ export namespace Prisma {
 
   export type CheckInOrderByWithAggregationInput = {
     id?: SortOrder
-    create_at?: SortOrder
+    created_at?: SortOrder
     validated_at?: SortOrderInput | SortOrder
     user_id?: SortOrder
     gym_id?: SortOrder
@@ -4612,7 +4612,7 @@ export namespace Prisma {
     OR?: CheckInScalarWhereWithAggregatesInput[]
     NOT?: CheckInScalarWhereWithAggregatesInput | CheckInScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"CheckIn"> | string
-    create_at?: DateTimeWithAggregatesFilter<"CheckIn"> | Date | string
+    created_at?: DateTimeWithAggregatesFilter<"CheckIn"> | Date | string
     validated_at?: DateTimeNullableWithAggregatesFilter<"CheckIn"> | Date | string | null
     user_id?: StringWithAggregatesFilter<"CheckIn"> | string
     gym_id?: StringWithAggregatesFilter<"CheckIn"> | string
@@ -4742,7 +4742,7 @@ export namespace Prisma {
 
   export type CheckInCreateInput = {
     id?: string
-    create_at?: Date | string
+    created_at?: Date | string
     validated_at?: Date | string | null
     user: UserCreateNestedOneWithoutCheckInInput
     gym: GymCreateNestedOneWithoutCheckInInput
@@ -4750,7 +4750,7 @@ export namespace Prisma {
 
   export type CheckInUncheckedCreateInput = {
     id?: string
-    create_at?: Date | string
+    created_at?: Date | string
     validated_at?: Date | string | null
     user_id: string
     gym_id: string
@@ -4758,7 +4758,7 @@ export namespace Prisma {
 
   export type CheckInUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     validated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     user?: UserUpdateOneRequiredWithoutCheckInNestedInput
     gym?: GymUpdateOneRequiredWithoutCheckInNestedInput
@@ -4766,7 +4766,7 @@ export namespace Prisma {
 
   export type CheckInUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     validated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     user_id?: StringFieldUpdateOperationsInput | string
     gym_id?: StringFieldUpdateOperationsInput | string
@@ -4774,7 +4774,7 @@ export namespace Prisma {
 
   export type CheckInCreateManyInput = {
     id?: string
-    create_at?: Date | string
+    created_at?: Date | string
     validated_at?: Date | string | null
     user_id: string
     gym_id: string
@@ -4782,13 +4782,13 @@ export namespace Prisma {
 
   export type CheckInUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     validated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type CheckInUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     validated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     user_id?: StringFieldUpdateOperationsInput | string
     gym_id?: StringFieldUpdateOperationsInput | string
@@ -4981,7 +4981,7 @@ export namespace Prisma {
 
   export type CheckInCountOrderByAggregateInput = {
     id?: SortOrder
-    create_at?: SortOrder
+    created_at?: SortOrder
     validated_at?: SortOrder
     user_id?: SortOrder
     gym_id?: SortOrder
@@ -4989,7 +4989,7 @@ export namespace Prisma {
 
   export type CheckInMaxOrderByAggregateInput = {
     id?: SortOrder
-    create_at?: SortOrder
+    created_at?: SortOrder
     validated_at?: SortOrder
     user_id?: SortOrder
     gym_id?: SortOrder
@@ -4997,7 +4997,7 @@ export namespace Prisma {
 
   export type CheckInMinOrderByAggregateInput = {
     id?: SortOrder
-    create_at?: SortOrder
+    created_at?: SortOrder
     validated_at?: SortOrder
     user_id?: SortOrder
     gym_id?: SortOrder
@@ -5413,14 +5413,14 @@ export namespace Prisma {
 
   export type CheckInCreateWithoutUserInput = {
     id?: string
-    create_at?: Date | string
+    created_at?: Date | string
     validated_at?: Date | string | null
     gym: GymCreateNestedOneWithoutCheckInInput
   }
 
   export type CheckInUncheckedCreateWithoutUserInput = {
     id?: string
-    create_at?: Date | string
+    created_at?: Date | string
     validated_at?: Date | string | null
     gym_id: string
   }
@@ -5456,7 +5456,7 @@ export namespace Prisma {
     OR?: CheckInScalarWhereInput[]
     NOT?: CheckInScalarWhereInput | CheckInScalarWhereInput[]
     id?: StringFilter<"CheckIn"> | string
-    create_at?: DateTimeFilter<"CheckIn"> | Date | string
+    created_at?: DateTimeFilter<"CheckIn"> | Date | string
     validated_at?: DateTimeNullableFilter<"CheckIn"> | Date | string | null
     user_id?: StringFilter<"CheckIn"> | string
     gym_id?: StringFilter<"CheckIn"> | string
@@ -5564,14 +5564,14 @@ export namespace Prisma {
 
   export type CheckInCreateWithoutGymInput = {
     id?: string
-    create_at?: Date | string
+    created_at?: Date | string
     validated_at?: Date | string | null
     user: UserCreateNestedOneWithoutCheckInInput
   }
 
   export type CheckInUncheckedCreateWithoutGymInput = {
     id?: string
-    create_at?: Date | string
+    created_at?: Date | string
     validated_at?: Date | string | null
     user_id: string
   }
@@ -5604,56 +5604,56 @@ export namespace Prisma {
 
   export type CheckInCreateManyUserInput = {
     id?: string
-    create_at?: Date | string
+    created_at?: Date | string
     validated_at?: Date | string | null
     gym_id: string
   }
 
   export type CheckInUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     validated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gym?: GymUpdateOneRequiredWithoutCheckInNestedInput
   }
 
   export type CheckInUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     validated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gym_id?: StringFieldUpdateOperationsInput | string
   }
 
   export type CheckInUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     validated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     gym_id?: StringFieldUpdateOperationsInput | string
   }
 
   export type CheckInCreateManyGymInput = {
     id?: string
-    create_at?: Date | string
+    created_at?: Date | string
     validated_at?: Date | string | null
     user_id: string
   }
 
   export type CheckInUpdateWithoutGymInput = {
     id?: StringFieldUpdateOperationsInput | string
-    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     validated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     user?: UserUpdateOneRequiredWithoutCheckInNestedInput
   }
 
   export type CheckInUncheckedUpdateWithoutGymInput = {
     id?: StringFieldUpdateOperationsInput | string
-    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     validated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     user_id?: StringFieldUpdateOperationsInput | string
   }
 
   export type CheckInUncheckedUpdateManyWithoutGymInput = {
     id?: StringFieldUpdateOperationsInput | string
-    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     validated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     user_id?: StringFieldUpdateOperationsInput | string
   }

@@ -130,7 +130,7 @@ exports.Prisma.UserScalarFieldEnum = {
 
 exports.Prisma.CheckInScalarFieldEnum = {
   id: 'id',
-  create_at: 'create_at',
+  created_at: 'created_at',
   validated_at: 'validated_at',
   user_id: 'user_id',
   gym_id: 'gym_id'
