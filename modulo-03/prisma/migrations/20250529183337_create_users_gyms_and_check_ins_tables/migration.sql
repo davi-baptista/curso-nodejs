@@ -12,7 +12,7 @@ CREATE TABLE "users" (
 -- CreateTable
 CREATE TABLE "check_ins" (
     "id" TEXT NOT NULL,
-    "create_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "validated_at" TIMESTAMP(3),
     "user_id" TEXT NOT NULL,
     "gym_id" TEXT NOT NULL,

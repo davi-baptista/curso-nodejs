@@ -7,7 +7,7 @@ interface GetUserProfileUseCaseRequest {
 }
 
 interface GetUserProfileUseCaseResponse {
-  user: User
+  user: Omit<User, 'password_hash'>
 }
 
 export class GetUserProfileUseCase {
@@ -22,6 +22,9 @@ export class GetUserProfileUseCase {
       throw new ResourceNotFoundError()
     }
 
-    return { user }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password_hash, ...userWithoutPassword } = user
+
+    return { user: userWithoutPassword }
   }
 }
