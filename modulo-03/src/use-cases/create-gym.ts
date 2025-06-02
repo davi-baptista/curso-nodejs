@@ -3,8 +3,8 @@ import { Gym } from 'generated/prisma'
 
 interface CreateGymUseCaseRequest {
   title: string
-  description: string
-  phone: string
+  description: string | null
+  phone: string | null
   latitude: number
   longitude: number
 }
