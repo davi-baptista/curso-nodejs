@@ -5,7 +5,7 @@ import { randomUUID } from 'node:crypto'
 export class InMemoryPetsRepository implements PetsRepository {
   public items: Pet[] = []
 
-  async create(data: Prisma.PetCreateInput) {
+  async create(data: Prisma.PetUncheckedCreateInput) {
     const pet = {
       id: randomUUID(),
       name: data.name,
@@ -14,9 +14,9 @@ export class InMemoryPetsRepository implements PetsRepository {
       age: data.age,
       portage: data.portage,
       city: data.city,
-      org_id: null,
-      adopter_id: null,
-      adopted_at: null,
+      org_id: data.org_id,
+      adopter_id: data.adopter_id ?? null,
+      adopted_at: data.adopted_at ? new Date(data.adopted_at) : null,
       description: data.description ?? null,
     }
 
@@ -25,8 +25,22 @@ export class InMemoryPetsRepository implements PetsRepository {
     return pet
   }
 
-  async findManyAvailable(city: string) {
-    const pets = this.items.filter((item) => item.city === city)
+  async searchManyAvailable(city: string, query: string) {
+    const pets = this.items.filter(
+      (item) =>
+        item.city === city &&
+        item.adopted_at === null &&
+        (item.species.toLowerCase().includes(query.toLowerCase()) ||
+          item.genrer.toLowerCase().includes(query.toLowerCase()) ||
+          item.portage.toLowerCase().includes(query.toLowerCase())),
+    )
     return pets
+  }
+
+  async findById(id: string) {
+    return (
+      this.items.find((item) => item.id === id && item.adopted_at === null) ??
+      null
+    )
   }
 }

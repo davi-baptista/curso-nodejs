@@ -3,6 +3,7 @@ import { Pet } from 'generated/prisma'
 
 interface FetchPetsAvailableUseCaseRequest {
   city: string
+  query: string
 }
 
 interface FetchPetsAvailableUseCaseReply {
@@ -14,8 +15,9 @@ export class FetchPetsAvailableUseCase {
 
   async execute({
     city,
+    query,
   }: FetchPetsAvailableUseCaseRequest): Promise<FetchPetsAvailableUseCaseReply> {
-    const pets = await this.petsRepository.findManyAvailable(city)
+    const pets = await this.petsRepository.searchManyAvailable(city, query)
 
     return { pets }
   }

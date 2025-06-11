@@ -12,37 +12,73 @@ describe('Fetch Pets Available Use Case', () => {
   })
 
   it('should be to fetch available pets in city', async () => {
-    petsRepository.create({
+    await petsRepository.create({
       name: 'Pet 1',
       genrer: 'MALE',
       species: 'Dog',
       age: 1,
       portage: 'SMALL',
       city: 'City 1',
+      org_id: '123',
+      adopted_at: Date(),
     })
-    petsRepository.create({
+
+    await petsRepository.create({
       name: 'Pet 2',
       genrer: 'MALE',
       species: 'Dog',
       age: 1,
       portage: 'SMALL',
       city: 'City 1',
+      org_id: '123',
     })
-    petsRepository.create({
-      name: 'Pet 2',
+
+    await petsRepository.create({
+      name: 'Pet 3',
       genrer: 'MALE',
       species: 'Dog',
       age: 1,
       portage: 'SMALL',
       city: 'City 2',
+      org_id: '123',
     })
 
     const { pets } = await sut.execute({
       city: 'City 1',
+      query: '',
     })
 
-    expect(pets).toHaveLength(2)
+    expect(pets).toHaveLength(1)
+    expect(pets[0].name).toEqual('Pet 2')
+  })
+
+  it('should be to fetch pets in city with specify characters', async () => {
+    await petsRepository.create({
+      name: 'Pet 1',
+      genrer: 'MALE',
+      species: 'Dog',
+      age: 1,
+      portage: 'SMALL',
+      city: 'City 1',
+      org_id: '123',
+    })
+
+    await petsRepository.create({
+      name: 'Pet 2',
+      genrer: 'MALE',
+      species: 'Cat',
+      age: 1,
+      portage: 'SMALL',
+      city: 'City 1',
+      org_id: '123',
+    })
+
+    const { pets } = await sut.execute({
+      city: 'City 1',
+      query: 'Dog',
+    })
+
+    expect(pets).toHaveLength(1)
     expect(pets[0].name).toEqual('Pet 1')
-    expect(pets[1].name).toEqual('Pet 2')
   })
 })

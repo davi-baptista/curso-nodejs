@@ -1,6 +1,7 @@
 import { Pet, Prisma } from 'generated/prisma'
 
 export interface PetsRepository {
-  create(data: Prisma.PetCreateInput): Promise<Pet>
-  findManyAvailable(city: string): Promise<Pet[]>
+  create(data: Prisma.PetUncheckedCreateInput): Promise<Pet>
+  searchManyAvailable(city: string, query: string): Promise<Pet[]>
+  findById(id: string): Promise<Pet | null>
 }
