@@ -10,7 +10,7 @@ interface CreatePetUseCaseRequest {
   age: number
   portage: Portage
   city: string
-  description: string
+  description: string | null
   orgId: string
 }
 

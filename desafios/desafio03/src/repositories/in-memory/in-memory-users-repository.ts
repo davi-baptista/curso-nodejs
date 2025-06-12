@@ -12,7 +12,7 @@ export class InMemoryUsersRepository implements UsersRepository {
       email: data.email,
       password_hash: data.password_hash,
       address: data.address,
-      whatsapp_number: data.whatsapp_number,
+      phone: data.phone,
       created_at: new Date(),
       role: data.role ?? 'MEMBER',
     }

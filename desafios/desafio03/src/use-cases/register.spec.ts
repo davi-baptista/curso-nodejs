@@ -17,7 +17,7 @@ describe('Register Use Case', () => {
       email: 'John@example.com',
       password: '123456',
       address: 'Rua 1',
-      whatsapp_number: '123456789',
+      phone: '123456789',
       role: 'MEMBER',
     })
 
@@ -31,7 +31,7 @@ describe('Register Use Case', () => {
       email: 'John@example.com',
       password: '123456',
       address: 'Rua 1',
-      whatsapp_number: '123456789',
+      phone: '123456789',
       role: 'ADMIN',
     })
 

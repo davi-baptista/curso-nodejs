@@ -1,3 +1,4 @@
+import { makeCreatePetUseCase } from '@/use-cases/factories/make-create-pet-use-case'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 
@@ -10,11 +11,14 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
     portage: z.enum(['SMALL', 'MEDIUM', 'LARGE']),
     city: z.string(),
     description: z.string().nullable(),
-    adopter_id: z.string().nullable(),
-    adopted_at: z.date().nullable(),
   })
 
-  const {
+  const { name, species, age, genrer, portage, city, description } =
+    createPetBodySchema.parse(request.body)
+
+  const useCase = makeCreatePetUseCase()
+
+  await useCase.execute({
     name,
     species,
     age,
@@ -22,9 +26,8 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
     portage,
     city,
     description,
-    adopter_id,
-    adopted_at,
-  } = createPetBodySchema.parse(request.body)
+    orgId: request.user.sub,
+  })
 
   return reply.status(201).send()
 }

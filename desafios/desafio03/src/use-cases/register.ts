@@ -8,7 +8,7 @@ interface RegisterUseCaseRequest {
   email: string
   password: string
   address: string
-  whatsapp_number: string
+  phone: string
   role: Role
 }
 
@@ -24,7 +24,7 @@ export class RegisterUseCase {
     email,
     password,
     address,
-    whatsapp_number,
+    phone,
     role,
   }: RegisterUseCaseRequest): Promise<RegisterUseCaseReply> {
     const userWithSameEmail = await this.usersRepository.findByEmail(email)
@@ -40,7 +40,7 @@ export class RegisterUseCase {
       email,
       password_hash,
       address,
-      whatsapp_number,
+      phone,
       role,
     })
 

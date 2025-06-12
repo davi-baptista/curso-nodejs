@@ -1,4 +1,4 @@
-import { Pet, Prisma } from 'generated/prisma'
+import { Genrer, Pet, Portage, Prisma } from 'generated/prisma'
 import { PetsRepository } from '../pets-repository'
 import { randomUUID } from 'node:crypto'
 
@@ -25,15 +25,27 @@ export class InMemoryPetsRepository implements PetsRepository {
     return pet
   }
 
-  async searchManyAvailable(city: string, query: string) {
-    const pets = this.items.filter(
-      (item) =>
-        item.city === city &&
-        item.adopted_at === null &&
-        (item.species.toLowerCase().includes(query.toLowerCase()) ||
-          item.genrer.toLowerCase().includes(query.toLowerCase()) ||
-          item.portage.toLowerCase().includes(query.toLowerCase())),
-    )
+  async searchManyAvailable(
+    city: string,
+    species?: string,
+    age?: number,
+    genrer?: Genrer,
+    portage?: Portage,
+  ) {
+    const pets = this.items.filter((item) => {
+      if (item.city.toLowerCase() !== city.toLowerCase()) return false
+      if (item.adopted_at !== null) return false
+      if (
+        species &&
+        !item.species.toLowerCase().includes(species.toLowerCase())
+      )
+        return false
+      if (age !== undefined && item.age !== age) return false
+      if (genrer && item.genrer !== genrer) return false
+      if (portage && item.portage !== portage) return false
+
+      return true
+    })
     return pets
   }
 

@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach } from 'vitest'
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
 import { AuthenticateUseCase } from './authenticate'
 import { hash } from 'bcryptjs'
-import { ResourceNotFoundError } from './errors/resource-not-found-error'
+import { InvalidCredentialsError } from './errors/invalid-credentials-error'
 
 let usersRepository: InMemoryUsersRepository
 let sut: AuthenticateUseCase
@@ -19,7 +19,7 @@ describe('Authenticate Use Case', () => {
       email: 'john@example.com',
       password_hash: await hash('123456', 6),
       address: 'Rua 1',
-      whatsapp_number: '123456789',
+      phone: '123456789',
       role: 'ADMIN',
     })
 
@@ -37,7 +37,7 @@ describe('Authenticate Use Case', () => {
       email: 'john@example.com',
       password_hash: await hash('123456', 6),
       address: 'Rua 1',
-      whatsapp_number: '123456789',
+      phone: '123456789',
       role: 'ADMIN',
     })
 
@@ -46,7 +46,7 @@ describe('Authenticate Use Case', () => {
         email: 'wrong_email@example.com',
         password: '123456',
       }),
-    ).rejects.toBeInstanceOf(ResourceNotFoundError)
+    ).rejects.toBeInstanceOf(InvalidCredentialsError)
   })
 
   it('should not be able to authenticate with wrong password', async () => {
@@ -55,7 +55,7 @@ describe('Authenticate Use Case', () => {
       email: 'john@example.com',
       password_hash: await hash('123456', 6),
       address: 'Rua 1',
-      whatsapp_number: '123456789',
+      phone: '123456789',
       role: 'ADMIN',
     })
 
@@ -64,6 +64,6 @@ describe('Authenticate Use Case', () => {
         email: 'john@example.com',
         password: 'wrong_password',
       }),
-    ).rejects.toBeInstanceOf(ResourceNotFoundError)
+    ).rejects.toBeInstanceOf(InvalidCredentialsError)
   })
 })

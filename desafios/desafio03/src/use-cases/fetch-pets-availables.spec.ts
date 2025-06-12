@@ -1,6 +1,6 @@
 import { InMemoryPetsRepository } from '@/repositories/in-memory/in-memory-pets-repository'
 import { describe, it, expect, beforeEach } from 'vitest'
-import { FetchPetsAvailableUseCase } from './fetch-pets-available'
+import { FetchPetsAvailableUseCase } from './fetch-pets-availables'
 
 let petsRepository: InMemoryPetsRepository
 let sut: FetchPetsAvailableUseCase
@@ -20,21 +20,10 @@ describe('Fetch Pets Available Use Case', () => {
       portage: 'SMALL',
       city: 'City 1',
       org_id: '123',
-      adopted_at: Date(),
     })
 
     await petsRepository.create({
       name: 'Pet 2',
-      genrer: 'MALE',
-      species: 'Dog',
-      age: 1,
-      portage: 'SMALL',
-      city: 'City 1',
-      org_id: '123',
-    })
-
-    await petsRepository.create({
-      name: 'Pet 3',
       genrer: 'MALE',
       species: 'Dog',
       age: 1,
@@ -45,11 +34,10 @@ describe('Fetch Pets Available Use Case', () => {
 
     const { pets } = await sut.execute({
       city: 'City 1',
-      query: '',
     })
 
     expect(pets).toHaveLength(1)
-    expect(pets[0].name).toEqual('Pet 2')
+    expect(pets[0].name).toEqual('Pet 1')
   })
 
   it('should be to fetch pets in city with specify characters', async () => {
@@ -75,7 +63,7 @@ describe('Fetch Pets Available Use Case', () => {
 
     const { pets } = await sut.execute({
       city: 'City 1',
-      query: 'Dog',
+      species: 'Dog',
     })
 
     expect(pets).toHaveLength(1)

@@ -21,7 +21,7 @@ describe('Create Pet Use Case', () => {
       email: 'john@example.com',
       password_hash: '123456',
       address: 'Rua 1',
-      whatsapp_number: '123456789',
+      phone: '123456789',
       role: 'ADMIN',
     })
 
